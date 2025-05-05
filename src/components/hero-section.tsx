@@ -48,12 +48,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="flex-1 relative">
-            <div className="relative w-full aspect-square max-w-lg mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon-blue/30 to-neon-pink/30 rounded-full blur-3xl opacity-50 animate-glow-slow"></div>
-              <div className="relative w-full h-full rounded-full border border-white/10 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent"></div>
-              </div>
-            </div>
+            {/* Empty space where the circle was previously */}
           </div>
         </div>
       </div>
