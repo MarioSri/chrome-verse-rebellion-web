@@ -75,8 +75,9 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        display: ["Space Grotesk", "sans-serif"],
+        display: ["Cormorant Garamond", "serif"],
         mono: ["JetBrains Mono", "monospace"],
+        serif: ["Cormorant Garamond", "serif"]
       },
       borderRadius: {
         lg: "var(--radius)",
