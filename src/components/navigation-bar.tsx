@@ -21,7 +21,7 @@ const NavigationBar = () => {
     <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-dark/80 border-b border-white/10">
       <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-serif font-light tracking-wide text-gradient-gold">
+          <Link to="/" className="text-2xl font-sans font-light tracking-wide text-gradient-gold">
             AestheticsRebellion
           </Link>
         </div>
@@ -32,7 +32,7 @@ const NavigationBar = () => {
             <Link
               key={item.name}
               to={item.path}
-              className="text-sm font-serif text-white/80 hover:text-white transition-colors duration-200"
+              className="text-sm font-sans text-white/80 hover:text-white transition-colors duration-200"
             >
               {item.name}
             </Link>
@@ -42,11 +42,11 @@ const NavigationBar = () => {
         <div className="hidden md:flex items-center space-x-4">
           <ChromeButton variant="chrome" size="sm" className="flex items-center gap-2">
             <Globe size={16} />
-            <span className="font-serif">Connect</span>
+            <span className="font-sans">Connect</span>
           </ChromeButton>
           <ChromeButton variant="gold" size="sm" className="flex items-center gap-2">
             <User size={16} />
-            <span className="font-serif">Enter App</span>
+            <span className="font-sans">Enter App</span>
           </ChromeButton>
         </div>
 
@@ -71,7 +71,7 @@ const NavigationBar = () => {
             <Link
               key={item.name}
               to={item.path}
-              className="text-xl font-serif text-white/80 hover:text-white transition-colors duration-200"
+              className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200"
               onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
@@ -80,11 +80,11 @@ const NavigationBar = () => {
           <div className="flex flex-col space-y-4 mt-8">
             <ChromeButton variant="chrome" className="flex items-center justify-center gap-2">
               <Globe size={18} />
-              <span className="font-serif">Connect</span>
+              <span className="font-sans">Connect</span>
             </ChromeButton>
             <ChromeButton variant="gold" className="flex items-center justify-center gap-2">
               <User size={18} />
-              <span className="font-serif">Enter App</span>
+              <span className="font-sans">Enter App</span>
             </ChromeButton>
           </div>
         </nav>
