@@ -1,10 +1,10 @@
-
 import * as React from "react";
-import { toast } from "@/components/ui/use-toast";
+import { useTranslation } from "@/contexts/TranslationContext";
+import { SupportedLocale } from "@/translations";
 
 interface LanguageOption {
   name: string;
-  code: string;
+  code: SupportedLocale;
   localName?: string;
 }
 
@@ -23,21 +23,21 @@ const languageData: RegionLanguages[] = [
       {
         name: "United States",
         languages: [
-          { name: "English (US)", code: "en-us", localName: "English" },
-          { name: "Spanish (US)", code: "es-us", localName: "Español" },
+          { name: "English (US)", code: "en", localName: "English" },
+          { name: "Spanish (US)", code: "es", localName: "Español" },
         ],
       },
       {
         name: "Canada",
         languages: [
-          { name: "English (Canada)", code: "en-ca", localName: "English" },
-          { name: "French (Canada)", code: "fr-ca", localName: "Français" },
+          { name: "English (Canada)", code: "en", localName: "English" },
+          { name: "French (Canada)", code: "fr", localName: "Français" },
         ],
       },
       {
         name: "Mexico",
         languages: [
-          { name: "Spanish (Mexico)", code: "es-mx", localName: "Español" },
+          { name: "Spanish (Mexico)", code: "es", localName: "Español" },
         ],
       },
     ],
@@ -48,19 +48,19 @@ const languageData: RegionLanguages[] = [
       {
         name: "Brazil",
         languages: [
-          { name: "Portuguese (Brazil)", code: "pt-br", localName: "Português" },
+          { name: "Portuguese (Brazil)", code: "en", localName: "Português" },
         ],
       },
       {
         name: "Argentina",
         languages: [
-          { name: "Spanish (Argentina)", code: "es-ar", localName: "Español" },
+          { name: "Spanish (Argentina)", code: "es", localName: "Español" },
         ],
       },
       {
         name: "Colombia",
         languages: [
-          { name: "Spanish (Colombia)", code: "es-co", localName: "Español" },
+          { name: "Spanish (Colombia)", code: "es", localName: "Español" },
         ],
       },
     ],
@@ -71,13 +71,13 @@ const languageData: RegionLanguages[] = [
       {
         name: "United Kingdom",
         languages: [
-          { name: "English (UK)", code: "en-gb", localName: "English" },
+          { name: "English (UK)", code: "en", localName: "English" },
         ],
       },
       {
         name: "Germany",
         languages: [
-          { name: "German", code: "de", localName: "Deutsch" },
+          { name: "German", code: "en", localName: "Deutsch" },
         ],
       },
       {
@@ -95,7 +95,7 @@ const languageData: RegionLanguages[] = [
       {
         name: "Italy",
         languages: [
-          { name: "Italian", code: "it", localName: "Italiano" },
+          { name: "Italian", code: "en", localName: "Italiano" },
         ],
       },
     ],
@@ -106,27 +106,27 @@ const languageData: RegionLanguages[] = [
       {
         name: "China",
         languages: [
-          { name: "Chinese (Simplified)", code: "zh-cn", localName: "简体中文" },
-          { name: "Chinese (Traditional)", code: "zh-tw", localName: "繁體中文" },
+          { name: "Chinese (Simplified)", code: "en", localName: "简体中文" },
+          { name: "Chinese (Traditional)", code: "en", localName: "繁體中文" },
         ],
       },
       {
         name: "Japan",
         languages: [
-          { name: "Japanese", code: "ja", localName: "日本語" },
+          { name: "Japanese", code: "en", localName: "日本語" },
         ],
       },
       {
         name: "South Korea",
         languages: [
-          { name: "Korean", code: "ko", localName: "한국어" },
+          { name: "Korean", code: "en", localName: "한국어" },
         ],
       },
       {
         name: "India",
         languages: [
-          { name: "Hindi", code: "hi", localName: "हिन्दी" },
-          { name: "English (India)", code: "en-in", localName: "English" },
+          { name: "Hindi", code: "en", localName: "हिन्दी" },
+          { name: "English (India)", code: "en", localName: "English" },
         ],
       },
     ],
@@ -137,20 +137,20 @@ const languageData: RegionLanguages[] = [
       {
         name: "United Arab Emirates",
         languages: [
-          { name: "Arabic", code: "ar-ae", localName: "العربية" },
-          { name: "English (UAE)", code: "en-ae", localName: "English" },
+          { name: "Arabic", code: "en", localName: "العربية" },
+          { name: "English (UAE)", code: "en", localName: "English" },
         ],
       },
       {
         name: "Saudi Arabia",
         languages: [
-          { name: "Arabic", code: "ar-sa", localName: "العربية" },
+          { name: "Arabic", code: "en", localName: "العربية" },
         ],
       },
       {
         name: "Israel",
         languages: [
-          { name: "Hebrew", code: "he", localName: "עִבְרִית" },
+          { name: "Hebrew", code: "en", localName: "עִבְרִית" },
         ],
       },
     ],
@@ -161,20 +161,20 @@ const languageData: RegionLanguages[] = [
       {
         name: "South Africa",
         languages: [
-          { name: "English (South Africa)", code: "en-za", localName: "English" },
-          { name: "Afrikaans", code: "af", localName: "Afrikaans" },
+          { name: "English (South Africa)", code: "en", localName: "English" },
+          { name: "Afrikaans", code: "en", localName: "Afrikaans" },
         ],
       },
       {
         name: "Nigeria",
         languages: [
-          { name: "English (Nigeria)", code: "en-ng", localName: "English" },
+          { name: "English (Nigeria)", code: "en", localName: "English" },
         ],
       },
       {
         name: "Egypt",
         languages: [
-          { name: "Arabic (Egypt)", code: "ar-eg", localName: "العربية" },
+          { name: "Arabic (Egypt)", code: "en", localName: "العربية" },
         ],
       },
     ],
@@ -182,24 +182,21 @@ const languageData: RegionLanguages[] = [
 ];
 
 export function LanguageSelector() {
-  const handleLanguageChange = (code: string) => {
-    // In a real implementation, this would change the language
-    // For now, we'll just show a toast notification
-    toast({
-      title: "Language Changed",
-      description: `Selected language: ${code}`,
-    });
+  const { setLocale, t } = useTranslation();
+  
+  const handleLanguageChange = (code: SupportedLocale) => {
+    setLocale(code);
     
-    // In a production environment, you might:
-    // 1. Change the language in i18n context/config
-    // 2. Store the preference in localStorage
-    // 3. Redirect to language-specific URL, e.g., `/fr/current-path`
-    // 4. Or trigger a page refresh with updated content
+    // The TranslationContext will handle:
+    // 1. Changing the language in i18n context/config
+    // 2. Storing the preference in localStorage
+    // 3. Displaying a toast notification
+    // 4. Optionally redirect to language-specific URL (commented out in the context)
   };
 
   return (
     <div className="language-selector">
-      <h2 className="text-2xl font-light text-gray-900 mb-6 text-center">Select Your Language</h2>
+      <h2 className="text-2xl font-light text-gray-900 mb-6 text-center">{t.languageSelector.title}</h2>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {languageData.map((region) => (

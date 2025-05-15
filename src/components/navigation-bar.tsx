@@ -1,9 +1,9 @@
-
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Globe, User, ChevronDown } from "lucide-react";
 import { ChromeButton } from "./ui/chrome-button";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/contexts/TranslationContext";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -21,10 +21,11 @@ import { LanguageSelector } from "./language-selector";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { t } = useTranslation();
 
   const mainNavItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
+    { name: t.navigation.home, path: "/" },
+    { name: t.navigation.about, path: "/about" },
   ];
 
   const exploreDropdownItems = [
@@ -40,11 +41,11 @@ const NavigationBar = () => {
   ];
 
   const secondaryNavItems = [
-    { name: "Web3", path: "/web3" },
-    { name: "News", path: "/news" },
-    { name: "FAQ", path: "/faq" },
-    { name: "Contact", path: "/contact" },
-    { name: "Community", path: "/community" },
+    { name: t.navigation.web3, path: "/web3" },
+    { name: t.navigation.news, path: "/news" },
+    { name: t.navigation.faq, path: "/faq" },
+    { name: t.navigation.contact, path: "/contact" },
+    { name: t.navigation.community, path: "/community" },
   ];
 
   return (
@@ -72,7 +73,7 @@ const NavigationBar = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-white/80 hover:text-white">
-                  Explore
+                  {t.navigation.explore}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-dark/95 backdrop-blur-lg border border-white/10 p-2">
                   <ul className="grid w-[200px] gap-1">
@@ -94,7 +95,7 @@ const NavigationBar = () => {
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-white/80 hover:text-white">
-                  Create
+                  {t.navigation.create}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="bg-dark/95 backdrop-blur-lg border border-white/10 p-2">
                   <ul className="grid w-[200px] gap-1">
@@ -142,11 +143,11 @@ const NavigationBar = () => {
           
           <ChromeButton variant="gold" size="sm" className="flex items-center gap-2">
             <Globe size={16} />
-            <Link to="/launcher" className="font-sans">Enter Metaverse</Link>
+            <Link to="/launcher" className="font-sans">{t.navigation.enterMetaverse}</Link>
           </ChromeButton>
           <ChromeButton variant="chrome" size="sm" className="flex items-center gap-2">
             <User size={16} />
-            <span className="font-sans">Sign In</span>
+            <span className="font-sans">{t.navigation.signIn}</span>
           </ChromeButton>
         </div>
 
@@ -195,7 +196,7 @@ const NavigationBar = () => {
           {/* Mobile Explore Dropdown */}
           <div className="w-full flex flex-col items-center">
             <button className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200 flex items-center">
-              Explore
+              {t.navigation.explore}
               <ChevronDown size={16} className="ml-1" />
             </button>
             <div className="mt-2 flex flex-col items-center space-y-2">
@@ -215,7 +216,7 @@ const NavigationBar = () => {
           {/* Mobile Create Dropdown */}
           <div className="w-full flex flex-col items-center">
             <button className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200 flex items-center">
-              Create
+              {t.navigation.create}
               <ChevronDown size={16} className="ml-1" />
             </button>
             <div className="mt-2 flex flex-col items-center space-y-2">
@@ -246,11 +247,11 @@ const NavigationBar = () => {
           <div className="flex flex-col space-y-4 mt-8">
             <ChromeButton variant="gold" className="flex items-center justify-center gap-2">
               <Globe size={18} />
-              <Link to="/launcher" className="font-sans" onClick={() => setIsMenuOpen(false)}>Enter Metaverse</Link>
+              <Link to="/launcher" className="font-sans" onClick={() => setIsMenuOpen(false)}>{t.navigation.enterMetaverse}</Link>
             </ChromeButton>
             <ChromeButton variant="chrome" className="flex items-center justify-center gap-2">
               <User size={18} />
-              <span className="font-sans">Sign In</span>
+              <span className="font-sans">{t.navigation.signIn}</span>
             </ChromeButton>
           </div>
         </nav>
