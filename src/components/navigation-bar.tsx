@@ -12,6 +12,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { LanguageSelector } from "./language-selector";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -122,6 +128,18 @@ const NavigationBar = () => {
         </nav>
 
         <div className="hidden lg:flex items-center space-x-4">
+          {/* Language Selector Trigger */}
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                <Globe size={20} className="text-white/80 hover:text-white" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-6 max-w-3xl max-h-[80vh] overflow-y-auto">
+              <LanguageSelector />
+            </DialogContent>
+          </Dialog>
+          
           <ChromeButton variant="gold" size="sm" className="flex items-center gap-2">
             <Globe size={16} />
             <Link to="/launcher" className="font-sans">Enter Metaverse</Link>
@@ -133,12 +151,26 @@ const NavigationBar = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-white"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          {/* Mobile Globe Icon */}
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                <Globe size={20} className="text-white/80 hover:text-white" />
+              </button>
+            </DialogTrigger>
+            <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-4 max-w-full w-[95%] max-h-[80vh] overflow-y-auto mx-auto">
+              <LanguageSelector />
+            </DialogContent>
+          </Dialog>
+          
+          <button
+            className="text-white"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
