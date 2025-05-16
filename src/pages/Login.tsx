@@ -12,7 +12,7 @@ const Login = () => {
       {/* Left half - Image */}
       <div className="relative w-full md:w-1/2 h-screen">
         <div className="absolute inset-0 bg-cover bg-center" 
-             style={{ backgroundImage: "url('/lovable-uploads/f6d1b27c-a62a-4428-b627-9a5974786af3.png')" }}>
+             style={{ backgroundImage: "url('/lovable-uploads/ff04ea92-726a-49db-97c0-d81b52a583fe.png')" }}>
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
         </div>
         <div className="absolute top-8 left-8 z-10">
