@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Globe, User, ChevronDown } from "lucide-react";
@@ -5,19 +6,22 @@ import { ChromeButton } from "./ui/chrome-button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/contexts/TranslationContext";
 import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { LanguageSelector } from "./language-selector";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -28,13 +32,13 @@ const NavigationBar = () => {
     { name: t.navigation.about, path: "/about" },
   ];
 
-  const exploreDropdownItems = [
+  const exploreItems = [
     { name: "All Worlds", path: "/explore" },
     { name: "Featured Planets", path: "/explore" },
     { name: "New Destinations", path: "/explore" },
   ];
 
-  const createDropdownItems = [
+  const createItems = [
     { name: "Get Started", path: "/create" },
     { name: "Tutorials", path: "/create/tutorials/intro" },
     { name: "Tools", path: "/create/tools/basics" },
@@ -49,212 +53,223 @@ const NavigationBar = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-dark/80 border-b border-white/10">
-      <div className="container mx-auto flex items-center justify-between py-4 px-4 md:px-8">
-        <div className="flex items-center">
-          <Link to="/" className="text-2xl font-sans font-light tracking-wide text-gradient-gold">
+    <header className="fixed top-0 left-0 w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/5">
+      <div className="container mx-auto">
+        <nav className="flex items-center justify-between py-4 px-4 md:px-6">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-sans font-light tracking-wide text-gradient-gold z-10">
             AestheticsRebellion
           </Link>
-        </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-6">
-          {mainNavItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="text-sm font-sans text-white/80 hover:text-white transition-colors duration-200"
-            >
-              {item.name}
-            </Link>
-          ))}
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {/* Primary Navigation */}
+            <div className="flex items-center space-x-6">
+              {mainNavItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="text-sm text-white/80 hover:text-white transition-colors duration-200 py-2"
+                >
+                  {item.name}
+                </Link>
+              ))}
 
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-white/80 hover:text-white">
-                  {t.navigation.explore}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-dark/95 backdrop-blur-lg border border-white/10 p-2">
-                  <ul className="grid w-[200px] gap-1">
-                    {exploreDropdownItems.map((item) => (
-                      <li key={item.name}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to={item.path}
-                            className="block text-sm font-sans text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-md transition-colors"
-                          >
-                            {item.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
+              {/* Explore Dropdown */}
+              <HoverCard openDelay={0} closeDelay={100}>
+                <HoverCardTrigger asChild>
+                  <Link 
+                    to="/explore" 
+                    className="flex items-center text-sm text-white/80 hover:text-white transition-colors duration-200 py-2"
+                  >
+                    {t.navigation.explore} <ChevronDown size={14} className="ml-1" />
+                  </Link>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-64 bg-dark/95 backdrop-blur-xl border border-white/10 p-2 animate-fade-in">
+                  <div className="flex flex-col space-y-1">
+                    {exploreItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        className="text-sm text-white/80 hover:text-white hover:bg-white/5 p-2 rounded-md transition-colors"
+                      >
+                        {item.name}
+                      </Link>
                     ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
 
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent text-white/80 hover:text-white">
-                  {t.navigation.create}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="bg-dark/95 backdrop-blur-lg border border-white/10 p-2">
-                  <ul className="grid w-[200px] gap-1">
-                    {createDropdownItems.map((item) => (
-                      <li key={item.name}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to={item.path}
-                            className="block text-sm font-sans text-white/80 hover:text-white hover:bg-white/10 p-2 rounded-md transition-colors"
-                          >
-                            {item.name}
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
+              {/* Create Dropdown */}
+              <HoverCard openDelay={0} closeDelay={100}>
+                <HoverCardTrigger asChild>
+                  <Link 
+                    to="/create" 
+                    className="flex items-center text-sm text-white/80 hover:text-white transition-colors duration-200 py-2"
+                  >
+                    {t.navigation.create} <ChevronDown size={14} className="ml-1" />
+                  </Link>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-64 bg-dark/95 backdrop-blur-xl border border-white/10 p-2 animate-fade-in">
+                  <div className="flex flex-col space-y-1">
+                    {createItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.path}
+                        className="text-sm text-white/80 hover:text-white hover:bg-white/5 p-2 rounded-md transition-colors"
+                      >
+                        {item.name}
+                      </Link>
                     ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
 
-          {secondaryNavItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="text-sm font-sans text-white/80 hover:text-white transition-colors duration-200"
+              {/* Secondary Navigation */}
+              {secondaryNavItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className="text-sm text-white/80 hover:text-white transition-colors duration-200 py-2"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Side Actions */}
+          <div className="flex items-center space-x-4">
+            {/* Language Selector */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="p-2 rounded-full hover:bg-white/5 transition-colors">
+                  <Globe size={20} className="text-white/80 hover:text-white" />
+                </button>
+              </DialogTrigger>
+              <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-6 max-w-3xl max-h-[80vh] overflow-y-auto">
+                <LanguageSelector />
+              </DialogContent>
+            </Dialog>
+
+            {/* Enter Metaverse Button - Desktop */}
+            <div className="hidden lg:block">
+              <ChromeButton variant="gold" size="sm" className="flex items-center gap-2">
+                <Globe size={16} />
+                <Link to="/launcher" className="font-sans">{t.navigation.enterMetaverse}</Link>
+              </ChromeButton>
+            </div>
+
+            {/* Sign In Button - Desktop */}
+            <div className="hidden lg:block">
+              <ChromeButton variant="chrome" size="sm" className="flex items-center gap-2">
+                <User size={16} />
+                <span className="font-sans">{t.navigation.signIn}</span>
+              </ChromeButton>
+            </div>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className="lg:hidden text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {item.name}
-            </Link>
-          ))}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </nav>
-
-        <div className="hidden lg:flex items-center space-x-4">
-          {/* Language Selector Trigger */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="p-2 rounded-full hover:bg-white/10 transition-colors">
-                <Globe size={20} className="text-white/80 hover:text-white" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-6 max-w-3xl max-h-[80vh] overflow-y-auto">
-              <LanguageSelector />
-            </DialogContent>
-          </Dialog>
-          
-          <ChromeButton variant="gold" size="sm" className="flex items-center gap-2">
-            <Globe size={16} />
-            <Link to="/launcher" className="font-sans">{t.navigation.enterMetaverse}</Link>
-          </ChromeButton>
-          <ChromeButton variant="chrome" size="sm" className="flex items-center gap-2">
-            <User size={16} />
-            <span className="font-sans">{t.navigation.signIn}</span>
-          </ChromeButton>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden flex items-center gap-2">
-          {/* Mobile Globe Icon */}
-          <Dialog>
-            <DialogTrigger asChild>
-              <button className="p-2 rounded-full hover:bg-white/10 transition-colors">
-                <Globe size={20} className="text-white/80 hover:text-white" />
-              </button>
-            </DialogTrigger>
-            <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-4 max-w-full w-[95%] max-h-[80vh] overflow-y-auto mx-auto">
-              <LanguageSelector />
-            </DialogContent>
-          </Dialog>
-          
-          <button
-            className="text-white"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div
+      {/* Mobile Navigation Overlay */}
+      <div 
         className={cn(
-          "fixed inset-0 bg-dark/95 backdrop-blur-lg z-40 transition-all duration-300 ease-in-out",
-          isMenuOpen ? "opacity-100 top-16" : "opacity-0 top-[-100%] pointer-events-none"
+          "fixed inset-0 bg-dark/95 backdrop-blur-lg z-40 lg:hidden transition-all duration-300 ease-in-out",
+          isMenuOpen 
+            ? "opacity-100 pointer-events-auto" 
+            : "opacity-0 pointer-events-none"
         )}
       >
-        <nav className="flex flex-col items-center justify-start h-full space-y-6 pt-10 pb-20 overflow-y-auto">
-          {mainNavItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
+        <div className="container mx-auto pt-20 pb-12 px-6 h-full overflow-y-auto">
+          <nav className="flex flex-col space-y-6">
+            {/* Primary Navigation - Mobile */}
+            {mainNavItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="text-xl font-light text-white/90 hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            
+            {/* Explore Dropdown - Mobile */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center text-xl font-light text-white/90 hover:text-white transition-colors">
+                {t.navigation.explore} <ChevronDown size={18} className="ml-1" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-dark/95 backdrop-blur-xl border border-white/10 p-2 mt-2 w-full">
+                {exploreItems.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link
+                      to={item.path}
+                      className="text-lg text-white/80 hover:text-white hover:bg-white/5 p-2 rounded-md transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-          {/* Mobile Explore Dropdown */}
-          <div className="w-full flex flex-col items-center">
-            <button className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200 flex items-center">
-              {t.navigation.explore}
-              <ChevronDown size={16} className="ml-1" />
-            </button>
-            <div className="mt-2 flex flex-col items-center space-y-2">
-              {exploreDropdownItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="text-md font-sans text-white/60 hover:text-white transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
+            {/* Create Dropdown - Mobile */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center text-xl font-light text-white/90 hover:text-white transition-colors">
+                {t.navigation.create} <ChevronDown size={18} className="ml-1" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-dark/95 backdrop-blur-xl border border-white/10 p-2 mt-2 w-full">
+                {createItems.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link
+                      to={item.path}
+                      className="text-lg text-white/80 hover:text-white hover:bg-white/5 p-2 rounded-md transition-colors"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Secondary Navigation - Mobile */}
+            {secondaryNavItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="text-xl font-light text-white/90 hover:text-white transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+
+            {/* Mobile Actions */}
+            <div className="flex flex-col space-y-4 mt-6">
+              <ChromeButton variant="gold" className="flex items-center justify-center gap-2">
+                <Globe size={18} />
+                <Link to="/launcher" className="font-sans" onClick={() => setIsMenuOpen(false)}>
+                  {t.navigation.enterMetaverse}
                 </Link>
-              ))}
+              </ChromeButton>
+              
+              <ChromeButton variant="chrome" className="flex items-center justify-center gap-2">
+                <User size={18} />
+                <span className="font-sans">{t.navigation.signIn}</span>
+              </ChromeButton>
             </div>
-          </div>
-
-          {/* Mobile Create Dropdown */}
-          <div className="w-full flex flex-col items-center">
-            <button className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200 flex items-center">
-              {t.navigation.create}
-              <ChevronDown size={16} className="ml-1" />
-            </button>
-            <div className="mt-2 flex flex-col items-center space-y-2">
-              {createDropdownItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="text-md font-sans text-white/60 hover:text-white transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {secondaryNavItems.map((item) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className="text-xl font-sans text-white/80 hover:text-white transition-colors duration-200"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          
-          <div className="flex flex-col space-y-4 mt-8">
-            <ChromeButton variant="gold" className="flex items-center justify-center gap-2">
-              <Globe size={18} />
-              <Link to="/launcher" className="font-sans" onClick={() => setIsMenuOpen(false)}>{t.navigation.enterMetaverse}</Link>
-            </ChromeButton>
-            <ChromeButton variant="chrome" className="flex items-center justify-center gap-2">
-              <User size={18} />
-              <span className="font-sans">{t.navigation.signIn}</span>
-            </ChromeButton>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
     </header>
   );
