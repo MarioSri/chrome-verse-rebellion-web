@@ -11,7 +11,7 @@ export const en = {
     contact: "Contact",
     community: "Community",
     signIn: "Sign In",
-    enterMetaverse: "Enter Metaverse"
+    enterMetaverse: "Enter Rebellion"
   },
   languageSelector: {
     title: "Select Your Language",
