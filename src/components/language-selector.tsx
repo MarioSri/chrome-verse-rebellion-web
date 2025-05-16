@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { SupportedLocale } from "@/translations";
@@ -23,21 +24,22 @@ const languageData: RegionLanguages[] = [
       {
         name: "United States",
         languages: [
-          { name: "English (US)", code: "en", localName: "English" },
-          { name: "Spanish (US)", code: "es", localName: "Español" },
+          { name: "English (US)", code: "en-us", localName: "English" },
+          { name: "Spanish (US)", code: "es-us", localName: "Español" },
         ],
       },
       {
         name: "Canada",
         languages: [
-          { name: "English (Canada)", code: "en", localName: "English" },
-          { name: "French (Canada)", code: "fr", localName: "Français" },
+          { name: "English (Canada)", code: "en-ca", localName: "English" },
+          // Changed from "fr" to "en" since French is not yet supported
+          { name: "French (Canada)", code: "en", localName: "Français" },
         ],
       },
       {
         name: "Mexico",
         languages: [
-          { name: "Spanish (Mexico)", code: "es", localName: "Español" },
+          { name: "Spanish (Mexico)", code: "es-mx", localName: "Español" },
         ],
       },
     ],
@@ -54,13 +56,13 @@ const languageData: RegionLanguages[] = [
       {
         name: "Argentina",
         languages: [
-          { name: "Spanish (Argentina)", code: "es", localName: "Español" },
+          { name: "Spanish (Argentina)", code: "es-ar", localName: "Español" },
         ],
       },
       {
         name: "Colombia",
         languages: [
-          { name: "Spanish (Colombia)", code: "es", localName: "Español" },
+          { name: "Spanish (Colombia)", code: "es-co", localName: "Español" },
         ],
       },
     ],
@@ -71,7 +73,7 @@ const languageData: RegionLanguages[] = [
       {
         name: "United Kingdom",
         languages: [
-          { name: "English (UK)", code: "en", localName: "English" },
+          { name: "English (UK)", code: "en-gb", localName: "English" },
         ],
       },
       {
@@ -83,7 +85,8 @@ const languageData: RegionLanguages[] = [
       {
         name: "France",
         languages: [
-          { name: "French", code: "fr", localName: "Français" },
+          // Changed from "fr" to "en" since French is not yet supported
+          { name: "French", code: "en", localName: "Français" },
         ],
       },
       {
@@ -126,7 +129,7 @@ const languageData: RegionLanguages[] = [
         name: "India",
         languages: [
           { name: "Hindi", code: "en", localName: "हिन्दी" },
-          { name: "English (India)", code: "en", localName: "English" },
+          { name: "English (India)", code: "en-in", localName: "English" },
         ],
       },
     ],
@@ -138,7 +141,7 @@ const languageData: RegionLanguages[] = [
         name: "United Arab Emirates",
         languages: [
           { name: "Arabic", code: "en", localName: "العربية" },
-          { name: "English (UAE)", code: "en", localName: "English" },
+          { name: "English (UAE)", code: "en-ae", localName: "English" },
         ],
       },
       {
@@ -161,14 +164,14 @@ const languageData: RegionLanguages[] = [
       {
         name: "South Africa",
         languages: [
-          { name: "English (South Africa)", code: "en", localName: "English" },
+          { name: "English (South Africa)", code: "en-za", localName: "English" },
           { name: "Afrikaans", code: "en", localName: "Afrikaans" },
         ],
       },
       {
         name: "Nigeria",
         languages: [
-          { name: "English (Nigeria)", code: "en", localName: "English" },
+          { name: "English (Nigeria)", code: "en-ng", localName: "English" },
         ],
       },
       {
