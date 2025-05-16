@@ -164,7 +164,7 @@ const NavigationBar = () => {
             <div className="hidden lg:block">
               <ChromeButton variant="chrome" size="sm" className="flex items-center gap-2">
                 <User size={16} />
-                <span className="font-sans">{t.navigation.signIn}</span>
+                <Link to="/login" className="font-sans">{t.navigation.signIn}</Link>
               </ChromeButton>
             </div>
 
@@ -265,7 +265,9 @@ const NavigationBar = () => {
               
               <ChromeButton variant="chrome" className="flex items-center justify-center gap-2">
                 <User size={18} />
-                <span className="font-sans">{t.navigation.signIn}</span>
+                <Link to="/login" className="font-sans" onClick={() => setIsMenuOpen(false)}>
+                  {t.navigation.signIn}
+                </Link>
               </ChromeButton>
             </div>
           </nav>
