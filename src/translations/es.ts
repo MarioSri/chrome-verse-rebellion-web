@@ -44,5 +44,19 @@ export const es = {
       termsOfService: "Términos de Servicio",
       cookiePolicy: "Política de Cookies"
     }
+  },
+  wallet: {
+    connectWallet: "Conectar Wallet",
+    continueWithWallet: "Continuar con wallet",
+    getWallet: "Obtener una Wallet",
+    notWhatYoureLookingFor: "¿No es lo que buscas?",
+    selectWalletInstruction: "Selecciona una wallet a la izquierda para comenzar con un proveedor diferente.",
+    popular: "Populares"
+  },
+  login: {
+    unlockPossibilities: "Desbloquea las Posibilidades",
+    continueWithGoogle: "Continuar con Google",
+    continueWithEmail: "Continuar con Email",
+    termsAgreement: "Al iniciar sesión, aceptas los Términos de Servicio, Política de Privacidad y Acuerdo de Uso de Wallet de Aesthetics Rebellion."
   }
 };

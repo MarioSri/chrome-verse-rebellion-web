@@ -18,6 +18,7 @@ import Launcher from "./pages/Launcher";
 import Community from "./pages/Community";
 import NotFound from "./pages/NotFound";
 import ChromeUI from "./pages/ChromeUI";
+import Login from "./pages/Login";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/launcher" element={<Launcher />} />
           <Route path="/community" element={<Community />} />
           <Route path="/chrome-ui" element={<ChromeUI />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
