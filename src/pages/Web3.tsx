@@ -1,11 +1,18 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { NavigationBar } from "@/components/navigation-bar";
 import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
+import { WalletConnectionFlow } from "@/components/wallet-connection-flow";
 
 const Web3 = () => {
   const location = useLocation();
+  const [showWalletConnect, setShowWalletConnect] = useState(false);
+  
+  const handleConnectWallet = () => {
+    setShowWalletConnect(true);
+  };
   
   let content;
   if (location.pathname === '/web3/token') {
@@ -39,6 +46,14 @@ const Web3 = () => {
           <li>NFT gallery showcase</li>
           <li>Links to token info, governance, and marketplace sections</li>
         </ul>
+        
+        <Button 
+          onClick={handleConnectWallet}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md mb-6"
+        >
+          Connect with Wallet
+        </Button>
+        
         <div className="flex space-x-4 mt-6">
           <Link to="/web3/token" className="text-blue-400 hover:underline">Token Info</Link>
           <Link to="/web3/governance" className="text-blue-400 hover:underline">Governance</Link>
@@ -58,6 +73,7 @@ const Web3 = () => {
         </div>
       </main>
       <Footer />
+      <WalletConnectionFlow open={showWalletConnect} onOpenChange={setShowWalletConnect} />
     </div>
   );
 };

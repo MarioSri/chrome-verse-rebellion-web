@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, Globe, User, ChevronDown } from "lucide-react";
@@ -22,9 +21,11 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { WalletConnectionFlow } from "./wallet-connection-flow";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [showWalletConnect, setShowWalletConnect] = React.useState(false);
   const { t } = useTranslation();
 
   const mainNavItems = [
@@ -51,6 +52,12 @@ const NavigationBar = () => {
     { name: t.navigation.contact, path: "/contact" },
     { name: t.navigation.community, path: "/community" },
   ];
+
+  const handleSignInClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowWalletConnect(true);
+    if (isMenuOpen) setIsMenuOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/5">
@@ -164,7 +171,7 @@ const NavigationBar = () => {
             <div className="hidden lg:block">
               <ChromeButton variant="chrome" size="sm" className="flex items-center gap-2">
                 <User size={16} />
-                <Link to="/login" className="font-sans">{t.navigation.signIn}</Link>
+                <Link to="#" onClick={handleSignInClick} className="font-sans">{t.navigation.signIn}</Link>
               </ChromeButton>
             </div>
 
@@ -265,7 +272,7 @@ const NavigationBar = () => {
               
               <ChromeButton variant="chrome" className="flex items-center justify-center gap-2">
                 <User size={18} />
-                <Link to="/login" className="font-sans" onClick={() => setIsMenuOpen(false)}>
+                <Link to="#" className="font-sans" onClick={handleSignInClick}>
                   {t.navigation.signIn}
                 </Link>
               </ChromeButton>
@@ -273,6 +280,9 @@ const NavigationBar = () => {
           </nav>
         </div>
       </div>
+
+      {/* Wallet Connection Dialog */}
+      <WalletConnectionFlow open={showWalletConnect} onOpenChange={setShowWalletConnect} />
     </header>
   );
 };

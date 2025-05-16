@@ -59,6 +59,8 @@ export function WalletConnectionFlow({ open, onOpenChange }: WalletConnectionFlo
       setSelectedWallet(null);
     }, 300);
   };
+  
+  console.log("WalletConnectionFlow rendering with open:", open);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
