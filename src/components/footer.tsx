@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "@/contexts/TranslationContext";
-import { Linkedin, Discord, Instagram, Youtube, X } from "lucide-react";
+import { Linkedin, Instagram, Youtube, X } from "lucide-react";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -25,7 +25,13 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
               <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
-                <Discord size={20} />
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 7.5V9a3 3 0 0 1-6 0V7.5" />
+                  <path d="M6 20v-5" />
+                  <path d="M21 7.5V9a3 3 0 0 1-6 0V7.5" />
+                  <path d="M18 20v-5" />
+                  <path d="M3 17h18" />
+                </svg>
               </a>
               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
                 <Instagram size={20} />
