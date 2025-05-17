@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "@/contexts/TranslationContext";
+import { Linkedin, Discord, Instagram, Youtube, X } from "lucide-react";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -17,6 +18,32 @@ const Footer = () => {
             <p className="text-white/60 text-sm mb-6 max-w-xs">
               {t.common.footer.description}
             </p>
+            
+            {/* Social Media Links */}
+            <div className="flex space-x-4 mt-4">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
+                <Linkedin size={20} />
+              </a>
+              <a href="https://discord.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
+                <Discord size={20} />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
+                <Instagram size={20} />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
+                <Youtube size={20} />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
+                <X size={20} />
+              </a>
+              <a href="https://twitch.tv" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/60 hover:text-white/90 transition-colors">
+                  <path d="M4.5 2H19.5V14.5L14.5 19.5H10.5L7.5 22.5H4.5V19.5H1.5V6L4.5 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M10.5 5H12V11H10.5V5Z" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M15.5 5H17V11H15.5V5Z" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+              </a>
+            </div>
           </div>
           
           <div>
