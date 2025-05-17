@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavigationBar } from "@/components/navigation-bar";
 import { Footer } from "@/components/footer";
@@ -10,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Monitor, Tablet, Smartphone, Headset } from "lucide-react";
 
 const Community = () => {
   const spotlightCreators = [
@@ -68,6 +68,29 @@ const Community = () => {
       title: "Security and Privacy",
       content: "Do not attempt to hack, exploit, or compromise the security of the platform or other users' data."
     }
+  ];
+  
+  const supportedDevices = [
+    {
+      name: "Desktop",
+      icon: <Monitor className="h-10 w-10 mb-2" />,
+      description: "Full experience optimized for large screens with detailed visualizations and controls."
+    },
+    {
+      name: "Tablet",
+      icon: <Tablet className="h-10 w-10 mb-2" />,
+      description: "Touch-optimized interface with responsive layouts for medium-sized screens."
+    },
+    {
+      name: "Mobile",
+      icon: <Smartphone className="h-10 w-10 mb-2" />,
+      description: "Streamlined experience for on-the-go access with gesture controls and simplified UI."
+    },
+    {
+      name: "VR Headsets",
+      icon: <Headset className="h-10 w-10 mb-2" />,
+      description: "Immersive WebXR experience compatible with Chrome and Firefox on supported headsets."
+    },
   ];
   
   return (
@@ -212,7 +235,50 @@ const Community = () => {
           </div>
         </section>
         
+        {/* New Devices Supported Section */}
         <section className="py-16 bg-dark-lighter">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-center">Devices Supported</h2>
+            <p className="text-center text-white/70 max-w-2xl mx-auto mb-12">
+              Experience the Aesthetics Rebellion metaverse across all your devices with our responsive design and immersive VR support.
+            </p>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+              {supportedDevices.map((device, index) => (
+                <ChromeCard 
+                  key={index} 
+                  variant={device.name === "VR Headsets" ? "chrome" : "glass"} 
+                  className="p-6 text-center hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="flex flex-col items-center">
+                    {device.icon}
+                    <h3 className="text-xl font-bold mb-2">{device.name}</h3>
+                    <p className="text-white/70 text-sm">{device.description}</p>
+                  </div>
+                  
+                  {device.name === "VR Headsets" && (
+                    <div className="mt-4 pt-4 border-t border-white/10">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gold text-dark">
+                        WebXR Compatible
+                      </span>
+                    </div>
+                  )}
+                </ChromeCard>
+              ))}
+            </div>
+            
+            <div className="mt-12 text-center">
+              <ChromeButton variant="gold" size="lg">
+                Try VR Experience
+              </ChromeButton>
+              <p className="text-white/60 text-sm mt-4">
+                Requires a WebXR-compatible browser and VR headset
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <section className="py-16 bg-dark">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center">Community Guidelines</h2>
             <div className="max-w-3xl mx-auto">
