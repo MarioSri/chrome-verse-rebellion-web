@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "@/contexts/TranslationContext";
@@ -33,10 +34,10 @@ const Footer = () => {
                 <Instagram size={20} />
               </a>
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
-                {/* YouTube logo */}
+                {/* YouTube logo in black */}
                 <svg width="20" height="14" viewBox="0 0 20 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M19.543 2.498C19.355 1.898 18.872 1.415 18.273 1.227C16.694 0.781 10 0.781 10 0.781C10 0.781 3.306 0.781 1.727 1.227C1.128 1.415 0.645 1.898 0.457 2.498C0.11 4.886 -0.22 8.76 0.457 11.023C0.645 11.623 1.128 12.106 1.727 12.294C3.306 12.74 10 12.74 10 12.74C10 12.74 16.694 12.74 18.273 12.294C18.872 12.106 19.355 11.623 19.543 11.023C19.89 8.719 20.011 4.851 19.543 2.498Z" fill="#FF0000"/>
-                  <path d="M8.008 9.018L13.984 6.753L8.008 4.483V9.018Z" fill="white"/>
+                  <path d="M19.543 2.498C19.355 1.898 18.872 1.415 18.273 1.227C16.694 0.781 10 0.781 10 0.781C10 0.781 3.306 0.781 1.727 1.227C1.128 1.415 0.645 1.898 0.457 2.498C0.11 4.886 -0.22 8.76 0.457 11.023C0.645 11.623 1.128 12.106 1.727 12.294C3.306 12.74 10 12.74 10 12.74C10 12.74 16.694 12.74 18.273 12.294C18.872 12.106 19.355 11.623 19.543 11.023C19.89 8.719 20.011 4.851 19.543 2.498Z"/>
+                  <path d="M8.008 9.018L13.984 6.753L8.008 4.483V9.018Z" fill="currentColor"/>
                 </svg>
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white/90 transition-colors">
