@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavigationBar } from "@/components/navigation-bar";
 import { HeroSection } from "@/components/hero-section";
@@ -78,6 +77,12 @@ const FeaturedPlanets = () => {
             className="inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium rounded-full hover:bg-white/20 transition-colors"
           >
             Explore All Worlds
+          </Link>
+          <Link
+            to="/marketing"
+            className="inline-flex items-center justify-center px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium rounded-full hover:bg-white/20 transition-colors ml-4"
+          >
+            Advertising Options
           </Link>
         </div>
       </div>

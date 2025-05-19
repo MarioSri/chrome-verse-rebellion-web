@@ -16,6 +16,7 @@ import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
 import Launcher from "./pages/Launcher";
 import Community from "./pages/Community";
+import Marketing from "./pages/Marketing";
 import NotFound from "./pages/NotFound";
 import ChromeUI from "./pages/ChromeUI";
 import Login from "./pages/Login";
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/launcher" element={<Launcher />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/marketing" element={<Marketing />} />
           <Route path="/chrome-ui" element={<ChromeUI />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
