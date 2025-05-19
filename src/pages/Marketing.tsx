@@ -1,4 +1,3 @@
-
 import React from "react";
 import { NavigationBar } from "@/components/navigation-bar";
 import { Footer } from "@/components/footer";
@@ -6,7 +5,7 @@ import { ChromeCard } from "@/components/ui/chrome-card";
 import { ChromeButton } from "@/components/ui/chrome-button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Map, Grid4X4, Users, Zap, TrendingUp } from "lucide-react";
+import { Map, Grid, Users, Zap, TrendingUp } from "lucide-react";
 
 const Marketing = () => {
   // Billboard rental data
