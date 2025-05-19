@@ -48,7 +48,6 @@ const NavigationBar = () => {
   const secondaryNavItems = [
     { name: t.navigation.web3, path: "/web3" },
     { name: t.navigation.news, path: "/news" },
-    { name: t.navigation.faq, path: "/faq" },
     { name: t.navigation.contact, path: "/contact" },
     { name: t.navigation.community, path: "/community" },
   ];
