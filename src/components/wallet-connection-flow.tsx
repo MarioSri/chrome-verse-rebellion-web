@@ -7,33 +7,28 @@ import { ChevronLeft, X } from "lucide-react";
 type Wallet = {
   name: string;
   icon: string;
-  realIcon?: string;
   description: string;
 };
 
 const wallets: Wallet[] = [
   {
     name: "Rainbow",
-    icon: "🌈",
-    realIcon: "/lovable-uploads/b83b5ba5-1395-48af-8f16-eb9925fed41c.png",
+    icon: "rainbow",
     description: "Mobile Wallet and Extension"
   },
   {
     name: "Coinbase Wallet",
-    icon: "◻️",
-    realIcon: "/lovable-uploads/b83b5ba5-1395-48af-8f16-eb9925fed41c.png",
+    icon: "coinbase",
     description: "Mobile Wallet and Extension"
   },
   {
     name: "MetaMask",
-    icon: "🦊",
-    realIcon: "/lovable-uploads/b83b5ba5-1395-48af-8f16-eb9925fed41c.png",
+    icon: "metamask",
     description: "Mobile Wallet and Extension"
   },
   {
     name: "WalletConnect",
-    icon: "📲",
-    realIcon: "/lovable-uploads/b83b5ba5-1395-48af-8f16-eb9925fed41c.png",
+    icon: "walletconnect",
     description: "Mobile Wallet and Extension"
   }
 ];
@@ -64,58 +59,58 @@ export function WalletConnectionFlow({ open, onOpenChange }: WalletConnectionFlo
       setSelectedWallet(null);
     }, 300);
   };
-  
-  console.log("WalletConnectionFlow rendering with open:", open);
 
+  const renderWalletIcon = (walletName: string, size: "small" | "large" = "small") => {
+    const iconClass = size === "large" ? "w-12 h-12" : "w-8 h-8";
+    
+    switch(walletName) {
+      case "Rainbow":
+        return <img src="/lovable-uploads/224a12cf-fcf1-4cd6-9f4f-7ea93049aeb3.png" className={`${iconClass} object-contain`} alt="Rainbow wallet" />;
+      case "Coinbase Wallet":
+        return <img src="/lovable-uploads/698fff45-8635-4d3e-8ee5-0c85d6d9234c.png" className={`${iconClass} object-contain`} alt="Coinbase wallet" />;
+      case "MetaMask":
+        return <img src="/lovable-uploads/d219ded4-962b-4d0d-b922-14d3f13a81ea.png" className={`${iconClass} object-contain`} alt="MetaMask wallet" />;
+      case "WalletConnect":
+        return <img src="/lovable-uploads/0622038a-f4da-400f-9c1b-1301b940996b.png" className={`${iconClass} object-contain`} alt="WalletConnect" />;
+      default:
+        return null;
+    }
+  };
+  
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px] p-0 gap-0 overflow-hidden bg-white text-black border-0 rounded-xl">
         <div className="flex h-[500px]">
           {/* Left panel - always visible */}
-          <div className="w-[40%] border-r border-gray-200 p-6">
-            <h2 className="text-2xl font-bold mb-8">Connect a Wallet</h2>
-            
-            <div>
-              <h3 className="text-gray-500 text-sm font-medium mb-4">Popular</h3>
-              <div className="space-y-4">
-                {wallets.map((wallet) => (
-                  <button
-                    key={wallet.name}
-                    className={`flex items-center w-full gap-3 p-2 hover:bg-gray-100 rounded-md transition-colors ${
-                      selectedWallet?.name === wallet.name ? "bg-gray-100" : ""
-                    }`}
-                    onClick={() => handleSelectWallet(wallet)}
-                  >
-                    <div className="w-8 h-8 flex items-center justify-center bg-blue-600 rounded-md overflow-hidden">
-                      {wallet.name === "Rainbow" && (
-                        <img src="/lovable-uploads/b83b5ba5-1395-48af-8f16-eb9925fed41c.png" className="w-8 h-8 object-cover" alt="" />
-                      )}
-                      {wallet.name === "Coinbase Wallet" && (
-                        <div className="bg-blue-500 w-full h-full flex items-center justify-center">
-                          <div className="w-4 h-4 bg-white rounded-sm" />
-                        </div>
-                      )}
-                      {wallet.name === "MetaMask" && (
-                        <img src="/lovable-uploads/1073cd2e-10f1-455d-9859-c22219efe254.png" className="w-8 h-8 object-cover" alt="" />
-                      )}
-                      {wallet.name === "WalletConnect" && (
-                        <div className="bg-blue-500 w-full h-full flex items-center justify-center">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 9l6 6 6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </div>
-                      )}
-                    </div>
-                    <span className="font-medium">{wallet.name}</span>
-                  </button>
-                ))}
+          <div className="w-[40%] border-r border-gray-200">
+            <div className="p-6">
+              <h2 className="text-2xl font-bold mb-8">Connect a Wallet</h2>
+              
+              <div>
+                <h3 className="text-gray-500 text-sm font-medium mb-4">Popular</h3>
+                <div className="space-y-4">
+                  {wallets.map((wallet) => (
+                    <button
+                      key={wallet.name}
+                      className={`flex items-center w-full gap-3 p-2 hover:bg-gray-100 rounded-md transition-colors ${
+                        selectedWallet?.name === wallet.name ? "bg-gray-100" : ""
+                      }`}
+                      onClick={() => handleSelectWallet(wallet)}
+                    >
+                      <div className="w-8 h-8 flex items-center justify-center bg-blue-600 rounded-md overflow-hidden">
+                        {renderWalletIcon(wallet.name)}
+                      </div>
+                      <span className="font-medium">{wallet.name}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
 
           {/* Right panel - conditionally shows content */}
           <div className="w-[60%] relative">
-            {/* Close button */}
+            {/* Close button - only shown on the right side */}
             <button 
               className="absolute right-4 top-4 p-1 rounded-full hover:bg-gray-100"
               onClick={handleClose}
@@ -123,18 +118,17 @@ export function WalletConnectionFlow({ open, onOpenChange }: WalletConnectionFlo
               <X className="h-5 w-5" />
             </button>
             
-            {/* Back button */}
-            {showGetWallet && (
-              <button
-                className="absolute left-4 top-4 p-1 rounded-full hover:bg-gray-100"
-                onClick={handleBack}
-              >
-                <ChevronLeft className="h-5 w-5 text-blue-500" />
-              </button>
-            )}
-            
             {/* Header */}
-            <div className="pt-6 px-6 pb-4 border-b border-gray-100">
+            <div className="pt-6 px-6 pb-4 border-b border-gray-100 flex items-center">
+              {/* Back button - only shown when in "Get Wallet" view */}
+              {showGetWallet && (
+                <button
+                  className="mr-2 p-1 rounded-full hover:bg-gray-100 text-blue-500"
+                  onClick={handleBack}
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+              )}
               <h2 className="text-2xl font-bold">
                 {showGetWallet ? "Get a Wallet" : ""}
               </h2>
@@ -149,24 +143,7 @@ export function WalletConnectionFlow({ open, onOpenChange }: WalletConnectionFlo
                     <div key={wallet.name} className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <div className="w-12 h-12 flex items-center justify-center bg-blue-600 rounded-md overflow-hidden">
-                          {wallet.name === "Rainbow" && (
-                            <img src="/lovable-uploads/b83b5ba5-1395-48af-8f16-eb9925fed41c.png" className="w-12 h-12 object-cover" alt="" />
-                          )}
-                          {wallet.name === "Coinbase Wallet" && (
-                            <div className="bg-blue-500 w-full h-full flex items-center justify-center">
-                              <div className="w-5 h-5 bg-white rounded-sm" />
-                            </div>
-                          )}
-                          {wallet.name === "MetaMask" && (
-                            <img src="/lovable-uploads/1073cd2e-10f1-455d-9859-c22219efe254.png" className="w-12 h-12 object-cover" alt="" />
-                          )}
-                          {wallet.name === "WalletConnect" && (
-                            <div className="bg-blue-500 w-full h-full flex items-center justify-center">
-                              <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 9l6 6 6-6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                              </svg>
-                            </div>
-                          )}
+                          {renderWalletIcon(wallet.name, "large")}
                         </div>
                         <div>
                           <div className="font-medium">{wallet.name}</div>
