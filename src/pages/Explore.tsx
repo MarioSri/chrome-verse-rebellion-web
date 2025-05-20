@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { NavigationBar } from "@/components/navigation-bar";
 import { Footer } from "@/components/footer";
@@ -217,7 +216,7 @@ const Explore = () => {
           
           {/* Create Your Own Section */}
           <div className="mt-16">
-            <ChromeCard variant="gold" className="p-8 bg-gradient-to-r from-chrome-dark to-chrome-light text-dark">
+            <ChromeCard variant="chrome" className="p-8 bg-gradient-to-r from-chrome-dark to-chrome-light text-dark">
               <div className="flex flex-col md:flex-row items-center">
                 <div className="md:w-2/3 mb-6 md:mb-0 md:pr-6">
                   <h2 className="text-3xl font-bold mb-4">Create Your Own Virtual World</h2>

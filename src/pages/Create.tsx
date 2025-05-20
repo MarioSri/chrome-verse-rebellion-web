@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
 import { NavigationBar } from "@/components/navigation-bar";
@@ -6,7 +5,7 @@ import { Footer } from "@/components/footer";
 import { ChromeCard } from "@/components/ui/chrome-card";
 import { ChromeButton } from "@/components/ui/chrome-button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Palette, Code, User, Box, Layers, Play, BookOpen, Tool, ArrowRight } from "lucide-react";
+import { Palette, Code, User, Box, Layers, Play, BookOpen, Wrench, ArrowRight, Globe, CheckCircle } from "lucide-react";
 
 const Create = () => {
   const { tutorialId, toolId } = useParams();
@@ -121,7 +120,7 @@ const Create = () => {
             
             <div className="bg-white/10 p-4 rounded-lg mt-6 flex items-center">
               <div className="mr-4 text-chrome-light">
-                <Tool size={24} />
+                <Wrench size={24} />
               </div>
               <div>
                 <h4 className="font-bold">Ready to start creating?</h4>
@@ -276,7 +275,7 @@ const Create = () => {
               <ChromeCard variant="chrome" className="p-6">
                 <div className="flex items-start mb-4">
                   <div className="bg-gradient-to-b from-chrome-light to-chrome-dark p-3 rounded-full mr-4">
-                    <Tool size={24} className="text-dark" />
+                    <Wrench size={24} className="text-dark" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1">Creation Tools</h3>
@@ -315,19 +314,19 @@ const Create = () => {
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-center">
                       <div className="w-5 h-5 rounded-full bg-chrome-light flex items-center justify-center mr-2">
-                        <Check size={12} className="text-dark" />
+                        <CheckCircle size={12} className="text-dark" />
                       </div>
                       <span>Sell your creations on the marketplace</span>
                     </li>
                     <li className="flex items-center">
                       <div className="w-5 h-5 rounded-full bg-chrome-light flex items-center justify-center mr-2">
-                        <Check size={12} className="text-dark" />
+                        <CheckCircle size={12} className="text-dark" />
                       </div>
                       <span>Early access to beta features</span>
                     </li>
                     <li className="flex items-center">
                       <div className="w-5 h-5 rounded-full bg-chrome-light flex items-center justify-center mr-2">
-                        <Check size={12} className="text-dark" />
+                        <CheckCircle size={12} className="text-dark" />
                       </div>
                       <span>Creator badge and profile verification</span>
                     </li>
@@ -397,22 +396,5 @@ const Create = () => {
   );
 };
 
-// Add the Check icon since it's not in the imported list
-const Check = ({ size, className }) => (
-  <svg 
-    xmlns="http://www.w3.org/2000/svg"
-    width={size}
-    height={size}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-  >
-    <polyline points="20 6 9 17 4 12"></polyline>
-  </svg>
-);
-
+// Remove the custom Check icon and use CheckCircle from lucide-react instead
 export default Create;
