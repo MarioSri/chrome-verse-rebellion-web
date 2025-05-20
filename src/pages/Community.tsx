@@ -99,6 +99,7 @@ const Community = () => {
       <NavigationBar />
       <main className="pt-24 pb-16">
         <section className="py-16 bg-gradient-to-b from-dark-lighter to-dark relative overflow-hidden">
+          <div className="absolute inset-0 bg-noise opacity-10"></div>
           <div className="container mx-auto px-4 text-center relative z-10">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">Join the Rebellion Community</h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto mb-12">
@@ -125,7 +126,7 @@ const Community = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div>
                 <h2 className="text-3xl font-bold mb-6">Forum Highlights</h2>
-                <ChromeCard variant="chrome" className="p-6">
+                <ChromeCard variant="dark" className="p-6">
                   <div className="space-y-4">
                     <div className="border-b border-white/10 pb-4">
                       <h3 className="font-bold mb-1">New Planet Creation Guide</h3>
@@ -164,7 +165,7 @@ const Community = () => {
                   {spotlightCreators.map((creator, index) => (
                     <ChromeCard 
                       key={index} 
-                      variant={index === 0 ? "chrome" : "glass"} 
+                      variant="dark" 
                       className="p-4 flex items-center space-x-4"
                     >
                       <div className="w-14 h-14 rounded-full overflow-hidden bg-white/10">
@@ -185,7 +186,7 @@ const Community = () => {
               
               <div>
                 <h2 className="text-3xl font-bold mb-6">Events & Contests</h2>
-                <ChromeCard variant="chrome" className="p-6">
+                <ChromeCard variant="dark" className="p-6">
                   <div className="space-y-6">
                     {upcomingEvents.map((event, index) => (
                       <div key={index} className={index < upcomingEvents.length - 1 ? "pb-4 border-b border-white/10" : ""}>
@@ -199,7 +200,7 @@ const Community = () => {
                     ))}
                   </div>
                 </ChromeCard>
-                <ChromeCard variant="glass" className="p-6 mt-6">
+                <ChromeCard variant="dark" className="p-6 mt-6">
                   <h3 className="font-bold mb-4">Top Contributors</h3>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -248,7 +249,7 @@ const Community = () => {
               {supportedDevices.map((device, index) => (
                 <ChromeCard 
                   key={index} 
-                  variant={device.name === "VR Headsets" ? "chrome" : "glass"} 
+                  variant="dark" 
                   className="p-6 text-center hover:scale-105 transition-transform duration-300"
                 >
                   <div className="flex flex-col items-center">
@@ -283,7 +284,7 @@ const Community = () => {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center">Community Guidelines</h2>
             <div className="max-w-3xl mx-auto">
-              <ChromeCard variant="chrome" className="p-6">
+              <ChromeCard variant="dark" className="p-6">
                 <Accordion type="single" collapsible className="w-full">
                   {communityGuidelines.map((guideline, index) => (
                     <AccordionItem key={index} value={`item-${index}`}>
@@ -304,7 +305,7 @@ const Community = () => {
                   <ChromeButton variant="gold">
                     Join Discord
                   </ChromeButton>
-                  <ChromeButton variant="chrome">
+                  <ChromeButton variant="dark">
                     Create Account
                   </ChromeButton>
                 </div>
