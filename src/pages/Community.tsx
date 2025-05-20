@@ -1,3 +1,4 @@
+
 import React from "react";
 import { NavigationBar } from "@/components/navigation-bar";
 import { Footer } from "@/components/footer";
@@ -235,7 +236,7 @@ const Community = () => {
           </div>
         </section>
         
-        {/* New Devices Supported Section */}
+        {/* Devices Supported Section */}
         <section className="py-16 bg-dark-lighter">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold mb-8 text-center">Devices Supported</h2>
