@@ -79,9 +79,7 @@ export function WalletConnectionFlow({ open, onOpenChange }: WalletConnectionFlo
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px] p-0 gap-0 overflow-hidden bg-white text-black border-0 rounded-xl">
-        <DialogHeader>
-          <DialogTitle>Connect a Wallet</DialogTitle>
-        </DialogHeader>
+        <DialogTitle className="sr-only">Connect a Wallet</DialogTitle>
         <div className="flex h-[500px]">
           {/* Left panel - always visible */}
           <div className="w-[40%] border-r border-gray-200">
