@@ -13,6 +13,7 @@ import {
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { LanguageSelector } from "./language-selector";
@@ -154,6 +155,7 @@ const NavigationBar = () => {
                 </button>
               </DialogTrigger>
               <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-6 max-w-3xl max-h-[80vh] overflow-y-auto">
+                <DialogTitle>{t.languageSelector.title}</DialogTitle>
                 <LanguageSelector />
               </DialogContent>
             </Dialog>

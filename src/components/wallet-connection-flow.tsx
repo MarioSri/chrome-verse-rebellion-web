@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -80,6 +79,7 @@ export function WalletConnectionFlow({ open, onOpenChange }: WalletConnectionFlo
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[600px] p-0 gap-0 overflow-hidden bg-white text-black border-0 rounded-xl">
+        <DialogTitle className="sr-only">Connect a Wallet</DialogTitle>
         <div className="flex h-[500px]">
           {/* Left panel - always visible */}
           <div className="w-[40%] border-r border-gray-200">
