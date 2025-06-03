@@ -1,18 +1,21 @@
-
 import * as React from "react";
 import { useTranslation } from "@/contexts/TranslationContext";
 import { SupportedLocale } from "@/translations";
+import { ChromeCard } from "./ui/chrome-card";
+import { Globe } from "lucide-react";
 
 interface LanguageOption {
   name: string;
   code: SupportedLocale;
   localName?: string;
+  flag?: string;
 }
 
 interface RegionLanguages {
   region: string;
   countries: {
     name: string;
+    flag?: string;
     languages: LanguageOption[];
   }[];
 }
@@ -23,23 +26,25 @@ const languageData: RegionLanguages[] = [
     countries: [
       {
         name: "United States",
+        flag: "🇺🇸",
         languages: [
-          { name: "English (US)", code: "en-us", localName: "English" },
-          { name: "Spanish (US)", code: "es-us", localName: "Español" },
+          { name: "English (US)", code: "en-us", localName: "English", flag: "🇺🇸" },
+          { name: "Spanish (US)", code: "es-us", localName: "Español", flag: "🇺🇸" },
         ],
       },
       {
         name: "Canada",
+        flag: "🇨🇦",
         languages: [
-          { name: "English (Canada)", code: "en-ca", localName: "English" },
-          // Changed from "fr" to "en" since French is not yet supported
-          { name: "French (Canada)", code: "en", localName: "Français" },
+          { name: "English (Canada)", code: "en-ca", localName: "English", flag: "🇨🇦" },
+          { name: "French (Canada)", code: "en", localName: "Français", flag: "🇨🇦" },
         ],
       },
       {
         name: "Mexico",
+        flag: "🇲🇽",
         languages: [
-          { name: "Spanish (Mexico)", code: "es-mx", localName: "Español" },
+          { name: "Spanish (Mexico)", code: "es-mx", localName: "Español", flag: "🇲🇽" },
         ],
       },
     ],
@@ -49,20 +54,23 @@ const languageData: RegionLanguages[] = [
     countries: [
       {
         name: "Brazil",
+        flag: "🇧🇷",
         languages: [
-          { name: "Portuguese (Brazil)", code: "en", localName: "Português" },
+          { name: "Portuguese (Brazil)", code: "en", localName: "Português", flag: "🇧🇷" },
         ],
       },
       {
         name: "Argentina",
+        flag: "🇦🇷",
         languages: [
-          { name: "Spanish (Argentina)", code: "es-ar", localName: "Español" },
+          { name: "Spanish (Argentina)", code: "es-ar", localName: "Español", flag: "🇦🇷" },
         ],
       },
       {
         name: "Colombia",
+        flag: "🇨🇴",
         languages: [
-          { name: "Spanish (Colombia)", code: "es-co", localName: "Español" },
+          { name: "Spanish (Colombia)", code: "es-co", localName: "Español", flag: "🇨🇴" },
         ],
       },
     ],
@@ -72,33 +80,37 @@ const languageData: RegionLanguages[] = [
     countries: [
       {
         name: "United Kingdom",
+        flag: "🇬🇧",
         languages: [
-          { name: "English (UK)", code: "en-gb", localName: "English" },
+          { name: "English (UK)", code: "en-gb", localName: "English", flag: "🇬🇧" },
         ],
       },
       {
         name: "Germany",
+        flag: "🇩🇪",
         languages: [
-          { name: "German", code: "en", localName: "Deutsch" },
+          { name: "German", code: "en", localName: "Deutsch", flag: "🇩🇪" },
         ],
       },
       {
         name: "France",
+        flag: "🇫🇷",
         languages: [
-          // Changed from "fr" to "en" since French is not yet supported
-          { name: "French", code: "en", localName: "Français" },
+          { name: "French", code: "en", localName: "Français", flag: "🇫🇷" },
         ],
       },
       {
         name: "Spain",
+        flag: "🇪🇸",
         languages: [
-          { name: "Spanish", code: "es", localName: "Español" },
+          { name: "Spanish", code: "es", localName: "Español", flag: "🇪🇸" },
         ],
       },
       {
         name: "Italy",
+        flag: "🇮🇹",
         languages: [
-          { name: "Italian", code: "en", localName: "Italiano" },
+          { name: "Italian", code: "en", localName: "Italiano", flag: "🇮🇹" },
         ],
       },
     ],
@@ -108,28 +120,32 @@ const languageData: RegionLanguages[] = [
     countries: [
       {
         name: "China",
+        flag: "🇨🇳",
         languages: [
-          { name: "Chinese (Simplified)", code: "en", localName: "简体中文" },
-          { name: "Chinese (Traditional)", code: "en", localName: "繁體中文" },
+          { name: "Chinese (Simplified)", code: "en", localName: "简体中文", flag: "🇨🇳" },
+          { name: "Chinese (Traditional)", code: "en", localName: "繁體中文", flag: "🇨🇳" },
         ],
       },
       {
         name: "Japan",
+        flag: "🇯🇵",
         languages: [
-          { name: "Japanese", code: "en", localName: "日本語" },
+          { name: "Japanese", code: "en", localName: "日本語", flag: "🇯🇵" },
         ],
       },
       {
         name: "South Korea",
+        flag: "🇰🇷",
         languages: [
-          { name: "Korean", code: "en", localName: "한국어" },
+          { name: "Korean", code: "en", localName: "한국어", flag: "🇰🇷" },
         ],
       },
       {
         name: "India",
+        flag: "🇮🇳",
         languages: [
-          { name: "Hindi", code: "en", localName: "हिन्दी" },
-          { name: "English (India)", code: "en-in", localName: "English" },
+          { name: "Hindi", code: "en", localName: "हिन्दी", flag: "🇮🇳" },
+          { name: "English (India)", code: "en-in", localName: "English", flag: "🇮🇳" },
         ],
       },
     ],
@@ -139,21 +155,24 @@ const languageData: RegionLanguages[] = [
     countries: [
       {
         name: "United Arab Emirates",
+        flag: "🇦🇪",
         languages: [
-          { name: "Arabic", code: "en", localName: "العربية" },
-          { name: "English (UAE)", code: "en-ae", localName: "English" },
+          { name: "Arabic", code: "en", localName: "العربية", flag: "🇦🇪" },
+          { name: "English (UAE)", code: "en-ae", localName: "English", flag: "🇦🇪" },
         ],
       },
       {
         name: "Saudi Arabia",
+        flag: "🇸🇦",
         languages: [
-          { name: "Arabic", code: "en", localName: "العربية" },
+          { name: "Arabic", code: "en", localName: "العربية", flag: "🇸🇦" },
         ],
       },
       {
         name: "Israel",
+        flag: "🇮🇱",
         languages: [
-          { name: "Hebrew", code: "en", localName: "עִבְרִית" },
+          { name: "Hebrew", code: "en", localName: "עִבְרִית", flag: "🇮🇱" },
         ],
       },
     ],
@@ -163,21 +182,24 @@ const languageData: RegionLanguages[] = [
     countries: [
       {
         name: "South Africa",
+        flag: "🇿🇦",
         languages: [
-          { name: "English (South Africa)", code: "en-za", localName: "English" },
-          { name: "Afrikaans", code: "en", localName: "Afrikaans" },
+          { name: "English (South Africa)", code: "en-za", localName: "English", flag: "🇿🇦" },
+          { name: "Afrikaans", code: "en", localName: "Afrikaans", flag: "🇿🇦" },
         ],
       },
       {
         name: "Nigeria",
+        flag: "🇳🇬",
         languages: [
-          { name: "English (Nigeria)", code: "en-ng", localName: "English" },
+          { name: "English (Nigeria)", code: "en-ng", localName: "English", flag: "🇳🇬" },
         ],
       },
       {
         name: "Egypt",
+        flag: "🇪🇬",
         languages: [
-          { name: "Arabic (Egypt)", code: "en", localName: "العربية" },
+          { name: "Arabic (Egypt)", code: "en", localName: "العربية", flag: "🇪🇬" },
         ],
       },
     ],
@@ -189,48 +211,54 @@ export function LanguageSelector() {
   
   const handleLanguageChange = (code: SupportedLocale) => {
     setLocale(code);
-    
-    // The TranslationContext will handle:
-    // 1. Changing the language in i18n context/config
-    // 2. Storing the preference in localStorage
-    // 3. Displaying a toast notification
-    // 4. Optionally redirect to language-specific URL (commented out in the context)
   };
 
   return (
     <div className="language-selector">
-      <h2 className="text-2xl font-light text-gray-900 mb-6 text-center">{t.languageSelector.title}</h2>
+      <div className="flex items-center justify-center gap-2 mb-8">
+        <Globe className="w-6 h-6 text-gold" />
+        <h2 className="text-2xl font-light">{t.languageSelector.title}</h2>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {languageData.map((region) => (
-          <div key={region.region} className="mb-4">
-            <h3 className="text-lg font-medium text-gray-800 mb-3 pb-1 border-b border-gray-200">
-              {region.region}
-            </h3>
-            
-            <div className="space-y-4">
-              {region.countries.map((country) => (
-                <div key={country.name} className="pl-2">
-                  <h4 className="text-sm font-medium text-gray-700 mb-1">{country.name}</h4>
-                  <ul className="space-y-1 pl-3">
-                    {country.languages.map((lang) => (
-                      <li key={lang.code}>
+          <ChromeCard 
+            key={region.region} 
+            variant="glass" 
+            className="backdrop-blur-lg bg-white/5 border-white/10"
+          >
+            <div className="p-4">
+              <h3 className="text-lg font-medium mb-4 text-gold">
+                {region.region}
+              </h3>
+              
+              <div className="space-y-4">
+                {region.countries.map((country) => (
+                  <div key={country.name}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-lg">{country.flag}</span>
+                      <h4 className="text-sm font-medium text-white/80">{country.name}</h4>
+                    </div>
+                    <div className="space-y-1">
+                      {country.languages.map((lang) => (
                         <button
+                          key={`${lang.code}-${lang.name}`}
                           onClick={() => handleLanguageChange(lang.code)}
-                          className="flex items-center text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded px-2 py-1 w-full text-left transition-colors"
+                          className="flex items-center w-full gap-2 px-3 py-2 text-sm text-white/60 hover:bg-white/10 rounded-md transition-colors"
                         >
+                          <span className="text-base">{lang.flag}</span>
                           <span>{lang.name}</span>
                           {lang.localName && lang.localName !== lang.name && (
-                            <span className="ml-1 text-gray-500 text-xs">{lang.localName}</span>
+                            <span className="ml-auto text-white/40">{lang.localName}</span>
                           )}
                         </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          </ChromeCard>
         ))}
       </div>
     </div>
