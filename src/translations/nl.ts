@@ -1,5 +1,4 @@
-
-export const en = {
+export const nl = {
   navigation: {
     home: "Home",
     about: "About",
@@ -15,21 +14,7 @@ export const en = {
   },
   languageSelector: {
     title: "Select Your Language",
-    currentLanguage: "Current language: English",
-    selectRegion: "Select Your Region",
-    searchRegions: "Search regions or countries...",
-    searchCountries: "Search countries or languages...",
-    searchLanguages: "Search languages...",
-    backToRegions: "← Back to regions",
-    backToCountries: "← Back to countries",
-    selectLanguage: "Select your preferred language",
-    reset: "Reset",
-    region: "Region",
-    country: "Country",
-    language: "Language",
-    countries: "countries",
-    languages: "languages",
-    more: "more"
+    currentLanguage: "Current language: Dutch"
   },
   about: {
     title: "About Aesthetics Rebellion",
@@ -73,4 +58,4 @@ export const en = {
     continueWithEmail: "Continue with Email",
     termsAgreement: "By signing in, you agree to Aesthetics Rebellion's Terms of Service, Privacy Policy and Wallet Usage Agreement."
   }
-};
+}; 

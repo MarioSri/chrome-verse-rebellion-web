@@ -16,7 +16,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { LanguageSelector } from "./language-selector";
+import { LocaleSelectorModal } from "./locale-selector-modal";
 import {
   HoverCard,
   HoverCardContent,
@@ -148,17 +148,15 @@ const NavigationBar = () => {
           {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
             {/* Language Selector */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <button className="p-2 rounded-full hover:bg-white/5 transition-colors">
-                  <Globe size={20} className="text-white/80 hover:text-white" />
-                </button>
-              </DialogTrigger>
-              <DialogContent className="bg-white/95 backdrop-blur-lg border border-white/20 p-6 max-w-3xl max-h-[80vh] overflow-y-auto">
-                <DialogTitle>{t.languageSelector.title}</DialogTitle>
-                <LanguageSelector />
-              </DialogContent>
-            </Dialog>
+            <LocaleSelectorModal>
+              <button 
+                className="p-2 rounded-full hover:bg-white/5 transition-colors"
+                title="Select language and region"
+                aria-label="Select language and region"
+              >
+                <Globe size={20} className="text-white/80 hover:text-white" />
+              </button>
+            </LocaleSelectorModal>
 
             {/* Enter Metaverse Button - Desktop */}
             <div className="hidden lg:block">

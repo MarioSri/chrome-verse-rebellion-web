@@ -20,6 +20,7 @@ import Marketing from "./pages/Marketing";
 import NotFound from "./pages/NotFound";
 import ChromeUI from "./pages/ChromeUI";
 import Login from "./pages/Login";
+import { LocaleDemo } from "./pages/LocaleDemo";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/marketing" element={<Marketing />} />
           <Route path="/chrome-ui" element={<ChromeUI />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/locale-demo" element={<LocaleDemo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
