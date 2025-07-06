@@ -1,4 +1,4 @@
-export const tr = {
+{
   "navigation": {
     "home": "Home",
     "about": "About",
@@ -33,13 +33,13 @@ export const tr = {
   "about": {
     "title": "About Aesthetics Rebellion",
     "description": "This is the About page where we'll display:",
-    "items": {
-      "0": "Chrome timeline of company history",
-      "1": "Team member cards with \"Read Bio\" options",
-      "2": "\"Join Our Team\" section linking to /careers",
-      "3": "\"Our Technology\" section linking to /web3",
-      "4": "Partner logos with external links"
-    }
+    "items": [
+      "Chrome timeline of company history",
+      "Team member cards with \"Read Bio\" options",
+      "\"Join Our Team\" section linking to /careers",
+      "\"Our Technology\" section linking to /web3",
+      "Partner logos with external links"
+    ]
   },
   "common": {
     "readMore": "Read More",
@@ -72,4 +72,4 @@ export const tr = {
     "continueWithEmail": "Continue with Email",
     "termsAgreement": "By signing in, you agree to Aesthetics Rebellion's Terms of Service, Privacy Policy and Wallet Usage Agreement."
   }
-};
+}

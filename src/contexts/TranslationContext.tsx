@@ -1,20 +1,22 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { translations, TranslationKeys, SupportedLocale } from '@/translations';
 import { toast } from "@/components/ui/use-toast";
+import { libreTranslate } from '@/lib/libreTranslate';
 
 type TranslationContextType = {
-  locale: SupportedLocale;
-  t: TranslationKeys;
-  setLocale: (locale: SupportedLocale) => void;
+  locale: string; // Allow any string for dynamic locales
+  t: any; // Allow dynamic translation objects
+  setLocale: (locale: string) => void;
+  translate: (text: string, target: string, source?: string) => Promise<string>;
 };
 
-const defaultLocale: SupportedLocale = 'en';
+const defaultLocale: string = 'en';
 
 const TranslationContext = createContext<TranslationContextType>({
   locale: defaultLocale,
   t: translations[defaultLocale],
   setLocale: () => {},
+  translate: async (text: string, target: string, source?: string) => text,
 });
 
 export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -33,35 +35,72 @@ export const TranslationProvider: React.FC<{ children: React.ReactNode }> = ({ c
     return supportedLocale || defaultLocale;
   };
 
-  const [locale, setLocaleState] = useState<SupportedLocale>(defaultLocale);
-  const [t, setT] = useState<TranslationKeys>(translations[defaultLocale]);
+  const [locale, setLocaleState] = useState<string>(defaultLocale);
+  const [t, setT] = useState<any>(translations[defaultLocale]);
+  const [dynamicT, setDynamicT] = useState<any | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Set the initial locale when the component mounts
     const initialLocale = getSavedLocale();
     setLocaleState(initialLocale);
-    setT(translations[initialLocale]);
+    setT(translations[initialLocale] || translations[defaultLocale]);
   }, []);
 
-  const setLocale = (newLocale: SupportedLocale) => {
-    if (translations[newLocale]) {
-      setLocaleState(newLocale);
-      setT(translations[newLocale]);
-      localStorage.setItem('locale', newLocale);
-      
-      // Display a toast notification
-      toast({
-        title: "Language Changed",
-        description: `Selected language: ${newLocale}`,
-      });
-      
-      // You could also update the URL path to reflect the language
-      // window.history.pushState({}, '', `/${newLocale}${window.location.pathname}`);
+  // Map region codes to base language codes for LibreTranslate
+  const getBaseLangCode = (code: string) => {
+    // Only keep the part before the dash, e.g. 'hi-IN' -> 'hi'
+    return code.split('-')[0].split('_')[0];
+  };
+
+  const setLocale = async (newLocale: string) => {
+    setLocaleState(newLocale);
+    setLoading(true);
+    const baseLang = getBaseLangCode(newLocale);
+    if (translations[newLocale as SupportedLocale]) {
+      setT(translations[newLocale as SupportedLocale]);
+      setDynamicT(null);
+      setLoading(false);
+    } else {
+      // Fallback: translate all keys in 'en' using LibreTranslate
+      const translateAll = async (obj: any, target: string): Promise<any> => {
+        const result: any = Array.isArray(obj) ? [] : {};
+        for (const key in obj) {
+          if (typeof obj[key] === 'string') {
+            result[key] = await libreTranslate(obj[key], baseLang);
+          } else if (typeof obj[key] === 'object') {
+            result[key] = await translateAll(obj[key], baseLang);
+          } else {
+            result[key] = obj[key];
+          }
+        }
+        return result;
+      };
+      setT(translations[defaultLocale]); // fallback to English while loading
+      setDynamicT(await translateAll(translations[defaultLocale], baseLang));
+      setLoading(false);
     }
+    localStorage.setItem('locale', newLocale);
+    toast({
+      title: "Language Changed",
+      description: `Selected language: ${newLocale}`,
+    });
+  };
+
+  const contextValue = {
+    locale,
+    t: dynamicT || t,
+    setLocale,
+    translate: async (text: string, target: string, source: string = 'en') => libreTranslate(text, target, source),
+    loading,
   };
 
   return (
-    <TranslationContext.Provider value={{ locale, t, setLocale }}>
+    <TranslationContext.Provider value={contextValue}>
+      {loading && (
+        <div style={{position: 'fixed', top: 0, left: 0, width: '100vw', background: '#222', color: '#fff', zIndex: 9999, textAlign: 'center', padding: 8}}>
+          Translating... Please wait
+        </div>
+      )}
       {children}
     </TranslationContext.Provider>
   );

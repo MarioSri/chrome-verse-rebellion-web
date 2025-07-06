@@ -1,62 +1,75 @@
-
 export const es = {
-  navigation: {
-    home: "Inicio",
-    about: "Acerca de",
-    explore: "Explorar",
-    create: "Crear",
-    web3: "Web3",
-    news: "Noticias",
-    faq: "Preguntas Frecuentes",
-    contact: "Contacto",
-    community: "Comunidad",
-    signIn: "Iniciar Sesión",
-    enterMetaverse: "Entrar a la Rebelión"
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "explore": "Explore",
+    "create": "Create",
+    "web3": "Web3",
+    "news": "News",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "community": "Community",
+    "signIn": "Sign In",
+    "enterMetaverse": "Enter Rebellion"
   },
-  languageSelector: {
-    title: "Selecciona tu Idioma",
-    currentLanguage: "Idioma actual: Español"
+  "languageSelector": {
+    "title": "Select Your Language",
+    "currentLanguage": "Current language: English",
+    "selectRegion": "Select Your Region",
+    "searchRegions": "Search regions or countries...",
+    "searchCountries": "Search countries or languages...",
+    "searchLanguages": "Search languages...",
+    "backToRegions": "← Back to regions",
+    "backToCountries": "← Back to countries",
+    "selectLanguage": "Select your preferred language",
+    "reset": "Reset",
+    "region": "Region",
+    "country": "Country",
+    "language": "Language",
+    "countries": "countries",
+    "languages": "languages",
+    "more": "more"
   },
-  about: {
-    title: "Acerca de Aesthetics Rebellion",
-    description: "Esta es la página Acerca de donde mostraremos:",
-    items: [
-      "Línea de tiempo cromada de la historia de la empresa",
-      "Tarjetas de miembros del equipo con opciones \"Leer Bio\"",
-      "Sección \"Únete a Nuestro Equipo\" enlazando a /careers",
-      "Sección \"Nuestra Tecnología\" enlazando a /web3",
-      "Logotipos de socios con enlaces externos"
-    ]
-  },
-  common: {
-    readMore: "Leer Más",
-    backToExplore: "Volver a Explorar",
-    footer: {
-      description: "Una plataforma premium de metaverso donde la estética y la tecnología convergen para crear experiencias digitales sin límites.",
-      navigation: "Navegación",
-      resources: "Recursos",
-      subscribe: "Suscribirse",
-      stayUpdated: "Mantente actualizado sobre las últimas noticias y lanzamientos.",
-      yourEmail: "Tu correo electrónico",
-      subscribeButton: "Suscribirse",
-      copyright: "© 2025 Aesthetics Rebellion Metaverse. Todos los derechos reservados.",
-      privacyPolicy: "Política de Privacidad",
-      termsOfService: "Términos de Servicio",
-      cookiePolicy: "Política de Cookies"
+  "about": {
+    "title": "About Aesthetics Rebellion",
+    "description": "This is the About page where we'll display:",
+    "items": {
+      "0": "Chrome timeline of company history",
+      "1": "Team member cards with \"Read Bio\" options",
+      "2": "\"Join Our Team\" section linking to /careers",
+      "3": "\"Our Technology\" section linking to /web3",
+      "4": "Partner logos with external links"
     }
   },
-  wallet: {
-    connectWallet: "Conectar Wallet",
-    continueWithWallet: "Continuar con wallet",
-    getWallet: "Obtener una Wallet",
-    notWhatYoureLookingFor: "¿No es lo que buscas?",
-    selectWalletInstruction: "Selecciona una wallet a la izquierda para comenzar con un proveedor diferente.",
-    popular: "Populares"
+  "common": {
+    "readMore": "Read More",
+    "backToExplore": "Back to Explore",
+    "footer": {
+      "description": "A premium metaverse platform where aesthetics and technology converge to create boundless digital experiences.",
+      "navigation": "Navigation",
+      "resources": "Resources",
+      "subscribe": "Subscribe",
+      "stayUpdated": "Stay updated on the latest news and releases.",
+      "yourEmail": "Your email",
+      "subscribeButton": "Subscribe",
+      "copyright": "© 2025 Aesthetics Rebellion Metaverse. All rights reserved.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "cookiePolicy": "Cookie Policy"
+    }
   },
-  login: {
-    unlockPossibilities: "Desbloquea las Posibilidades",
-    continueWithGoogle: "Continuar con Google",
-    continueWithEmail: "Continuar con Email",
-    termsAgreement: "Al iniciar sesión, aceptas los Términos de Servicio, Política de Privacidad y Acuerdo de Uso de Wallet de Aesthetics Rebellion."
+  "wallet": {
+    "connectWallet": "Connect Wallet",
+    "continueWithWallet": "Continue with wallet",
+    "getWallet": "Get a Wallet",
+    "notWhatYoureLookingFor": "Not what you're looking for?",
+    "selectWalletInstruction": "Select a wallet on the left to get started with a different wallet provider.",
+    "popular": "Popular"
+  },
+  "login": {
+    "unlockPossibilities": "Unlock the Possibilities",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithEmail": "Continue with Email",
+    "termsAgreement": "By signing in, you agree to Aesthetics Rebellion's Terms of Service, Privacy Policy and Wallet Usage Agreement."
   }
 };

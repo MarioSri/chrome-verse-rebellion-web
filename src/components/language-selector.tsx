@@ -6,7 +6,7 @@ import { Globe } from "lucide-react";
 
 interface LanguageOption {
   name: string;
-  code: SupportedLocale;
+  code: string; // Allow any string for real-time translation
   localName?: string;
   flag?: string;
 }
@@ -207,10 +207,22 @@ const languageData: RegionLanguages[] = [
 ];
 
 export function LanguageSelector() {
-  const { setLocale, t } = useTranslation();
-  
-  const handleLanguageChange = (code: SupportedLocale) => {
-    setLocale(code);
+  const { setLocale, t, translate } = useTranslation();
+  const [realTimeText, setRealTimeText] = React.useState('');
+  const [translatedText, setTranslatedText] = React.useState('');
+  const [targetLang, setTargetLang] = React.useState('es');
+  const [loading, setLoading] = React.useState(false);
+
+  const handleLanguageChange = (code: string) => {
+    // If the code is a supported locale, use setLocale; otherwise, ignore or handle as needed
+    setLocale(code as SupportedLocale);
+  };
+
+  const handleTranslate = async () => {
+    setLoading(true);
+    const result = await translate(realTimeText, targetLang);
+    setTranslatedText(result);
+    setLoading(false);
   };
 
   return (
@@ -260,6 +272,44 @@ export function LanguageSelector() {
             </div>
           </ChromeCard>
         ))}
+      </div>
+
+      <div className="my-8 p-4 bg-white/10 rounded-lg">
+        <h3 className="text-lg font-medium mb-2 text-gold">Real-time Translation (LibreTranslate)</h3>
+        <div className="flex flex-col gap-2">
+          <textarea
+            className="p-2 rounded border border-gray-300"
+            rows={2}
+            placeholder="Enter text to translate..."
+            value={realTimeText}
+            onChange={e => setRealTimeText(e.target.value)}
+          />
+          <select
+            className="p-2 rounded border border-gray-300 w-fit"
+            value={targetLang}
+            onChange={e => setTargetLang(e.target.value)}
+            title="Select target language"
+          >
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="zh">Chinese</option>
+            <option value="hi">Hindi</option>
+            {/* Add more as needed */}
+          </select>
+          <button
+            className="px-4 py-2 bg-gold text-white rounded hover:bg-yellow-600 disabled:opacity-50"
+            onClick={handleTranslate}
+            disabled={loading || !realTimeText}
+          >
+            {loading ? 'Translating...' : 'Translate'}
+          </button>
+          {translatedText && (
+            <div className="mt-2 p-2 bg-white/20 rounded">
+              <strong>Result:</strong> {translatedText}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
